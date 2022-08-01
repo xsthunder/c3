@@ -74,6 +74,11 @@ def convert():
         if name[0] in ['redictions', 'eq_relationship']:
             print("Skipping")
             continue
+        # fix l_step non exsits
+        # "adam_v", "adam_m",
+        if any(n in ["l_step"] for n in name):
+            print("Skipping {}".format("/".join(name)))
+            continue
         pointer = model
         for m_name in name:
             if re.fullmatch(r'[A-Za-z]+_\d+', m_name):
